@@ -26,7 +26,7 @@ export default function Home() {
     <div className='w-full flex flex-col'>
       <div className='flex flex-col'>
         <h4 className='self-center font-semibold text-xl mb-4'>Latest Movies</h4>
-        <div className='gap-4 h-full overflow-x-auto flex'>
+        <div className='gap-4 flex overflow-x-auto'>
           {
             movies.map((e) => <MovieCard key={e.id} movie={e} />)
           }
