@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'next-themes'
 import { useState, useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import UserContext from '../context/userContext'
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }) {
   return (
   <ThemeProvider>
     <div id="root">
+      <Toaster />
       <UserContext.Provider value={{
         session_id: sessionId,
         setSessionId: (u) => setSessionID(u)

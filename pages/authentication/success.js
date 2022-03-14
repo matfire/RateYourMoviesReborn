@@ -4,6 +4,7 @@ import Lottie from 'react-lottie-player'
 import userContext from "../../context/userContext"
 import client from "../../utils/tmdb"
 import patching from "../../lottie/99274-loading.json"
+import toast from "react-hot-toast"
 
 export default function SuccessCallback() {
   const sessionContext = useContext(userContext)
@@ -24,6 +25,7 @@ export default function SuccessCallback() {
 
   useEffect(() => {
     if (sessionContext.session_id && animationEnded) {
+      toast.success("Welcome!")
       router.push("/")
     }
   }, [animationEnded, sessionContext, router])
