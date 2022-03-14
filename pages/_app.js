@@ -11,7 +11,17 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     client.setSessionId(sessionId)
+    if (sessionId) {
+      localStorage.setItem("tmdb_token", sessionId)
+    }
+    console.log(sessionId)
   }, [sessionId])
+
+  useEffect(() => {
+    if (localStorage.getItem("tmdb_token")) {
+      setSessionID(localStorage.getItem("tmdb_token"))
+    }
+  }, [])
 
   return (
   <ThemeProvider>
