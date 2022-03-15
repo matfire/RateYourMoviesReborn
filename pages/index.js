@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <div className='w-full flex flex-col'>
       <div className='flex flex-col'>
-        <div className='flex justify-between'>
+        <div className='flex justify-between px-2'>
         <h4 className='font-semibold text-xl mb-1'>Latest Movies</h4>
         <Link href="/movie/popular">See More</Link>
         </div>
