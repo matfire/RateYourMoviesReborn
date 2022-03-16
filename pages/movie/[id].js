@@ -31,7 +31,14 @@ export default function MovieDetails({ movie }) {
           </figure>
           <div className="card-body">
             <button className="btn" disabled={!session_id || !accountID} onClick={async() => {
-
+              const inWatchlist = watchlist.find((e) => e === movie.id) !== undefined
+              await client.account.addToWatchlist({media_id: movie.id, media_type: "movie", watchlist: !inWatchlist, accountID})
+              if (inWatchlist) {
+                setWatchlist((old) => old.filter((e) => e !== movie.id))
+              } else {
+                setWatchlist((old) => [...old, movie.id])
+              }
+              toast.success(`${inWatchlist ? "removed from" : "added to"} watchlist`)
             }}>
               <Watchlist className="w-6 h-6" />
             </button>
