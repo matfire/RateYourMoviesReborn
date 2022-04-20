@@ -13,7 +13,7 @@ export default function Header() {
     <header>
       <div className="navbar bg-base-100 mb-1 lg:mb-10 shadow-xl">
         <div className="navbar-start">
-          <span className="btn btn-ghost normal-case text-xl"><Link href="/">RYM</Link></span>
+          <Link href="/" passHref><a className="btn btn-ghost normal-case text-xl">RYM</a></Link>
 
         </div>
         <div className="navbar-end hidden lg:flex">
