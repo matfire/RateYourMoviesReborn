@@ -1,11 +1,13 @@
 import { useEffect } from "react"
 import { useRecoilState, useSetRecoilState } from "recoil"
 import { userState } from "../context/atoms/user"
-import { movieWatchlist } from "../context/atoms/watchlist"
+import { movieWatchlist } from "../context/atoms/movieWatchlist"
 import client from "../utils/tmdb"
+import { movieFavorite } from "../context/atoms/movieFavorite"
 
 export default function Layout({ children }) {
-  const setWatchlist = useSetRecoilState(movieWatchlist)
+  const setMovieWatchlist = useSetRecoilState(movieWatchlist)
+  const setMovieFavorites = useSetRecoilState(movieFavorite)
   const [user, setUser] = useRecoilState(userState)
 
   useEffect(() => {
@@ -41,13 +43,19 @@ export default function Layout({ children }) {
   useEffect(() => {
     const getWatchlist = async () => {
       const data = await client.account.getMovieWatchlist({ accountID: user.account_id })
-      setWatchlist(data.results.map((e) => e.id))
+      setMovieWatchlist(data.results.map((e) => e.id))
+    }
+
+    const getMovieFavorites = async () => {
+      const data = await client.account.getFavoriteMovies({ accountID: user.account_id })
+      setMovieFavorites(data.results.map((e) => e.id))
     }
 
     if (user.account_id && user.session_id) {
       getWatchlist()
+      getMovieFavorites()
     }
-  }, [setWatchlist, user])
+  }, [setMovieWatchlist, user])
 
   return (
     <div className="w-full h-full" id="root">
