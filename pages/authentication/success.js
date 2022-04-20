@@ -15,15 +15,22 @@ export default function SuccessCallback() {
 
   useEffect(() => {
     const getSession = async () => {
-      const res = await client.auth.createSession(router.query.request_token);
-      setUser((old) => (
-        {...old, session_id: res.session_id}
-      ))
+      try {
+        const res = await client.auth.createSession(router.query.request_token);
+        setUser((old) => (
+          {...old, session_id: res.session_id}
+        ))
+        
+      } catch (error) {
+        toast.error("something went wrong")
+        console.error(error)
+        router.push("/")
+      }
     }
-    if (router.query.approved && !sessionContext.session_id) {
+    if (router.query.approved && !user.session_id) {
       getSession()
     }
-  }, [router, setUser])
+  }, [router, setUser, user])
 
   useEffect(() => {
     if (user.session_id && animationEnded) {
