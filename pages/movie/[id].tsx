@@ -1,5 +1,6 @@
 import { Movie } from "@matfire/the_movie_wrapper/lib/types/movie"
 import Image from "next/image"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import toast from "react-hot-toast"
@@ -62,15 +63,15 @@ export default function MovieDetails(props: { movie: Movie }) {
             </div>
           </div>
         </div>
-        <div className="w-full px-2">
+        <div className="w-full px-2 lg:px-4">
           <div className="flex flex-col space-y-2 md:space-y-0 md:items-center w-full mb-2">
             <h1 className="font-bold text-2xl">{props.movie.title}</h1>
             <span className="italic text-lg">{props.movie.tagline}</span>
           </div>
-          <div className="stats justify-center shadow w-full" >
+          <div className="stats stats-vertical lg:stats-horizontal shadow w-full" >
             <div className="stat">
               <div className="stat-title">Release Date</div>
-              <div className="stat-value">{new Date(props.movie.release_date).toDateString()}</div>
+              <div className="stat-value">{new Date(props.movie.release_date).toLocaleDateString(undefined, { dateStyle: "short" })}</div>
             </div>
             <div className="stat">
               <div className="stat-title">Vote Count</div>
@@ -82,7 +83,7 @@ export default function MovieDetails(props: { movie: Movie }) {
             </div>
           </div>
           {session_id &&
-            <div>
+            <div className="w-full flex justify-center">
               <ReactStars
                 count={10}
                 onChange={async (value) => {
@@ -99,10 +100,16 @@ export default function MovieDetails(props: { movie: Movie }) {
               />
             </div>
           }
-          <div className="flex justify-evenly flex-wrap mb-2 mt-2">
-            {props.movie.keywords.map((e) => <span onClick={() => router.push(`/keywords/movie/${e.id}`)} className="badge hover:scale-110 transition-transform cursor-pointer" key={e.id}>{e.name}</span>)}
+          <div className="flex flex-col w-full">
+            <span className=" text-2xl text-center">Tags</span>
+            <div className="flex flex-wrap mb-2 mt-2 gap-4">
+              {props.movie.keywords.map((e) => <Link key={e.id} href={`/keywords/movie/${e.id}`} passHref><a className="hover:scale-110 transition-transform btn btn-outline">{e.name}</a></Link>)}
+            </div>
           </div>
-          <div>
+          <div className="divider"></div>
+          <div className="flex flex-col w-full mt-3">
+            <span className=" text-2xl text-center">Overview</span>
+
             <p>{props.movie.overview}</p>
           </div>
           <div>

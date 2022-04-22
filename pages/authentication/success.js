@@ -20,6 +20,7 @@ export default function SuccessCallback() {
         setUser((old) => (
           {...old, session_id: res.session_id}
         ))
+        localStorage.setItem("session_id_tmdb", res.session_id)
         
       } catch (error) {
         toast.error("something went wrong")
