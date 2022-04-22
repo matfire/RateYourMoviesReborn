@@ -11,11 +11,11 @@ export default function Layout({ children }) {
   const [user, setUser] = useRecoilState(userState)
 
   useEffect(() => {
-    if (localStorage.getItem("tmdb_token")) {
+    if (localStorage.getItem("session_id_tmdb")) {
       setUser((old) => (
         {
           ...old,
-          session_id: localStorage.getItem("tmdb_token")
+          session_id: localStorage.getItem("session_id_tmdb")
         }
       ))
     }
@@ -55,7 +55,7 @@ export default function Layout({ children }) {
       getWatchlist()
       getMovieFavorites()
     }
-  }, [setMovieWatchlist, user])
+  }, [setMovieFavorites, setMovieWatchlist, user])
 
   return (
     <div className="w-full h-full" id="root">
