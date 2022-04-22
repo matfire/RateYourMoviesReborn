@@ -1,34 +1,44 @@
 import { useRouter } from "next/router"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Lottie from 'react-lottie-player'
-import userContext from "../../context/userContext"
 import client from "../../utils/tmdb"
 import patching from "../../lottie/99274-loading.json"
 import toast from "react-hot-toast"
+import { useRecoilState } from "recoil"
+import { userState } from "../../context/atoms/user"
 
 export default function SuccessCallback() {
-  const sessionContext = useContext(userContext)
   const router = useRouter()
   const [animationEnded, setAnimationEnded] = useState(false)
-
+  const [user, setUser] = useRecoilState(userState)
 
 
   useEffect(() => {
     const getSession = async () => {
-      const res = await client.auth.createSession(router.query.request_token);
-      sessionContext.setSessionId(res.session_id);
+      try {
+        const res = await client.auth.createSession(router.query.request_token);
+        setUser((old) => (
+          {...old, session_id: res.session_id}
+        ))
+        localStorage.setItem("session_id_tmdb", res.session_id)
+        
+      } catch (error) {
+        toast.error("something went wrong")
+        console.error(error)
+        router.push("/")
+      }
     }
-    if (router.query.approved && !sessionContext.session_id) {
+    if (router.query.approved && !user.session_id) {
       getSession()
     }
-  }, [router, sessionContext])
+  }, [router, setUser, user])
 
   useEffect(() => {
-    if (sessionContext.session_id && animationEnded) {
+    if (user.session_id && animationEnded) {
       toast.success("Welcome!")
       router.push("/")
     }
-  }, [animationEnded, sessionContext, router])
+  }, [animationEnded, user, router])
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
