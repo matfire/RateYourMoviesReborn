@@ -7,7 +7,7 @@ import Lottie from "react-lottie-player";
 import patching from "../../../lottie/99274-loading.json"
 
 //TODO implement authentication back
-export default async function Page() {
+export default function Page() {
     const params = useSearchParams()
     const [animationEnded, setAnimationEnded] = useState(false)
     const router = useRouter()
