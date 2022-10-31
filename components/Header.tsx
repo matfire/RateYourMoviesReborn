@@ -24,7 +24,7 @@ export default function Header() {
           {!session &&
             <button className="btn btn-ghost btn-circle" onClick={async () => {
               const token = await client.auth.getAuthenticationToken();
-              const url = await client.auth.createAuthUrl(`${process.env.NODE_ENV === "production" ? `${process.env.NEXT_PUBLIC_PRODUCTION_URL}` : "http://localhost:3000"}/authentication/success`, token.request_token)
+              const url = await client.auth.createAuthUrl(`${process.env.NODE_ENV === "production" ? `${process.env.NEXT_PUBLIC_PRODUCTION_URL}` : "http://localhost:3000"}/authentication/success`)
               window.location.replace(url);
             }}>
               <User className="h-5 w-5" />

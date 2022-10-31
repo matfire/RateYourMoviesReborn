@@ -1,6 +1,7 @@
 "use client";
 
-import { useSearchParams, redirect } from 'next/navigation';
+
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from "react";
 import Lottie from "react-lottie-player";
 import patching from "../../../lottie/99274-loading.json"
@@ -10,7 +11,7 @@ import client from "../../../utils/tmdb";
 //TODO implement authentication back
 export default function Page() {
     const params = useSearchParams()
-    const [animationEnded, setAnimationEnded] = useState(false)
+    const router = useRouter()
     const { setSession, session } = useContext(sessionContext)
 
 
@@ -22,9 +23,7 @@ export default function Page() {
                 setSession(session.session_id);
                 localStorage.setItem("rym_session", session.session_id);
             } catch (error) { } finally {
-                if (session) {
-                    redirect("/")
-                }
+                router.replace("/")
             }
         }
         if (params.get("approved")) {
@@ -40,7 +39,6 @@ export default function Page() {
                 loop={false}
                 play
                 className="w-1/3 h-auto p-4"
-                onComplete={() => setAnimationEnded(true)}
             />
         </div>
     )
