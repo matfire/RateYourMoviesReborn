@@ -11,7 +11,7 @@ export default async function Page() {
           <h4 className='font-semibold text-xl mb-1'>Latest Movies</h4>
           <Link href="/movie/popular">See More</Link>
         </div>
-        <div className='gap-4 flex overflow-x-auto'>
+        <div className='gap-4 flex overflow-x-auto snap-x lg:snap-none'>
           {
             movies.results.map((e) => <MovieCard key={e.id} movie={e} />)
           }

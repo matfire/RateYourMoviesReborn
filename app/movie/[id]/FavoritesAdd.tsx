@@ -8,7 +8,7 @@ export default function FavoritesAdd({ movieId }: { movieId: number }) {
     const { session } = useContext(sessionContext);
 
     return (
-        <button className="btn h-auto w-auto" disabled={!session} onClick={async () => {
+        <button aria-label="add or remove from favorites" className="btn h-auto w-auto" disabled={!session} onClick={async () => {
             client.setSessionId(session)
             const { favorite: inFavorites } = await client.movies.getAccountStates(movieId);
             toast.loading(`${inFavorites ? "removing" : "adding"} to favorites`, { id: "fav" })

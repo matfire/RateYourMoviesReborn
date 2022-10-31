@@ -2,10 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 import client from "../../../utils/tmdb"
 import FavoritesAdd from "./FavoritesAdd"
+import RateMovie from "./Rate"
 import WatchlistAdd from "./WatchlistAdd"
 
 export default async function Page({ params }) {
-    const movie = await client.movies.getMovie(params.id, ["keywords", "recommendations", "reviews", "videos", "lists"])
+    const movie = await client.movies.getMovie(params.id, ["keywords", "recommendations", "reviews", "videos", "lists", "images"])
     return (
         <div className="w-full h-full flex flex-col px-4">
             <div className="w-full flex justify-between flex-col md:flex-row">
@@ -39,24 +40,7 @@ export default async function Page({ params }) {
                             <div className="stat-value">{movie.vote_average} / 10</div>
                         </div>
                     </div>
-                    {/* {session_id &&
-                        <div className="w-full flex justify-center">
-                            <ReactStars
-                                count={10}
-                                onChange={async (value) => {
-                                    if (interactionLocked) {
-                                        toast.error("Please wait for the previous operation to finish")
-                                        return;
-                                    }
-                                    setInteractionLocked(true)
-                                    await client.movies.rate(parseInt(router.query['id'] as string), value)
-                                    toast.success("Movie rated!")
-                                    setInteractionLocked(false)
-                                }}
-                                size={30}
-                            />
-                        </div>
-                    } */}
+                    <RateMovie movieId={movie.id} />
                     <div className="flex flex-col w-full">
                         <span className=" text-2xl text-center">Tags</span>
                         <div className="flex flex-wrap mb-2 mt-2 gap-4">
@@ -66,15 +50,20 @@ export default async function Page({ params }) {
                     <div className="divider"></div>
                     <div className="flex flex-col w-full mt-3">
                         <span className=" text-2xl text-center">Overview</span>
-
                         <p>{movie.overview}</p>
-                    </div>
-                    <div>
-
                     </div>
                 </div>
             </div>
+            <div className="w-full flex flex-col h-full">
+                <div className="flex overflow-x-auto gap-4 snap-x">
+                    {movie.images.posters.map((poster) => (
+                        <div key={poster.file_path} className="w-80 lg:w-96 h-auto">
+                            <Image alt={`poster ${poster.file_path}`} src={client.getImageUrl(poster.file_path, "w500")} width={500} height={720} />
+                        </div>
+                    ))}
 
+                </div>
+            </div>
         </div>
     )
 }

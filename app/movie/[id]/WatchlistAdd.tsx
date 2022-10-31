@@ -10,7 +10,7 @@ import client from "../../../utils/tmdb"
 export default function WatchlistAdd({ movieId }: { movieId: number }) {
     const { session } = useContext(sessionContext);
     return (
-        <button className="btn h-auto w-auto" disabled={!session} onClick={async () => {
+        <button aria-label="add or remove from watchlist" className="btn h-auto w-auto" disabled={!session} onClick={async () => {
             client.setSessionId(session)
             const { watchlist: inWatchlist } = await client.movies.getAccountStates(movieId)
             toast.loading(`${inWatchlist ? "removing from" : "adding to"} watchlist`, { id: "watch" })
