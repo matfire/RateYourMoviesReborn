@@ -18,7 +18,12 @@ export default function layout({ children }) {
 
   }, [])
   return (
-    <html data-theme={theme}>
+    <html data-theme={theme} lang="en">
+      <head>
+        <title>RYM</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Review, rate and save your favorite movies and tv shows" />
+      </head>
       <body>
         <SessionContextProvider value={{ session, setSession: changeSession }}>
           <Toaster />
