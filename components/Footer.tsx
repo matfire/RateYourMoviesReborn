@@ -2,7 +2,6 @@ import Sun from "../icons/Sun"
 import Moon from "../icons/Moon"
 
 export default function Footer({ theme, changeTheme }: { theme: String, changeTheme: (t: String) => void }) {
-  //const { theme, setTheme } = useTheme()
 
   return (
     <footer className='w-full flex justify-between'>

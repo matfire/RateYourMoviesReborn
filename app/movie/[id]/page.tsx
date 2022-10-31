@@ -1,10 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import client from "../../../utils/tmdb"
+import FavoritesAdd from "./FavoritesAdd"
+import WatchlistAdd from "./WatchlistAdd"
 
 export default async function Page({ params }) {
-    const router = useRouter()
     const movie = await client.movies.getMovie(params.id, ["keywords", "recommendations", "reviews", "videos", "lists"])
     return (
         <div className="w-full h-full flex flex-col px-4">
@@ -15,35 +15,8 @@ export default async function Page({ params }) {
                     </figure>
                     <div className="card-body">
                         <div className="flex flex-col md:flex-row justify-evenly space-y-2 md:space-y-0">
-                            {/* <div className="tooltip" data-tip={watchlist.find((e) => e === movie.id) !== undefined ? 'remove from watchlist' : 'add to watchlist'}>
-                                <button className="btn btn-wide md:btn-block" disabled={!session_id || !accountID} onClick={async () => {
-                                    const inWatchlist = watchlist.find((e) => e === movie.id) !== undefined
-                                    await client.account.addToWatchlist({ media_id: movie.id, media_type: "movie", watchlist: !inWatchlist, accountID })
-                                    if (inWatchlist) {
-                                        setWatchlist((old) => old.filter((e) => e !== movie.id))
-                                    } else {
-                                        setWatchlist((old) => [...old, movie.id])
-                                    }
-                                    toast.success(`${inWatchlist ? "removed from" : "added to"} watchlist`)
-                                }}>
-                                    <Watchlist className="w-6 h-6" />
-                                </button>
-                            </div> */}
-                            {/* <div className="tooltip" data-tip={favorites.find((e) => e === movie.id) !== undefined ? 'remove from favorites' : 'add to favorites'}>
-                                 <button className="btn btn-wide md:btn-block" disabled={!session_id || !accountID} onClick={async () => {
-                                    const inFavorites = favorites.find((e) => e === movie.id) !== undefined
-                                    await client.account.markAsFavorite({ media_id: movie.id, media_type: "movie", favorite: !inFavorites, accountID })
-                                    if (inFavorites) {
-                                        setFavorites((old) => old.filter((e) => e !== movie.id))
-                                    } else {
-                                        setFavorites((old) => [...old, movie.id])
-                                    }
-                                    toast.success(`${inFavorites ? "removed from" : "added to"} favorites`)
-                                }}>
-                                    <Heart className="w-6 h-6" />
-                                </button>
-                            </div> */}
-
+                            <WatchlistAdd movieId={movie.id} />
+                            <FavoritesAdd movieId={movie.id} />
                         </div>
                     </div>
                 </div>
