@@ -55,13 +55,10 @@ export default async function Page({ params }) {
                 </div>
             </div>
             <div className="w-full flex flex-col h-full">
-                <div className="flex overflow-x-auto gap-4 snap-x">
+                <div className="flex overflow-x-auto snap-x gap-4 lg:snap-none">
                     {movie.images.posters.map((poster) => (
-                        <div key={poster.file_path} className="w-80 lg:w-96 h-auto">
-                            <Image alt={`poster ${poster.file_path}`} src={client.getImageUrl(poster.file_path, "w500")} width={500} height={720} />
-                        </div>
+                            <Image key={poster.file_path} className="snap-center" alt={`poster ${poster.file_path}`} src={client.getImageUrl(poster.file_path, "w500")} width={500} height={720} />
                     ))}
-
                 </div>
             </div>
         </div>
