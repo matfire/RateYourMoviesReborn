@@ -7,15 +7,18 @@ import { SetStateAction, useEffect, useState } from "react"
 import { SessionContextProvider } from "../contexts/sessionContext"
 import { Toaster } from "react-hot-toast"
 
-export default function layout({ children }) {
+export default function Layout({ children }) {
   const [theme, setTheme] = useState("light")
   const [session, setSession] = useState<string>(undefined)
 
-  const changeTheme = (t: String) => setTheme(t as SetStateAction<string>)
-  const changeSession = (t: String) => setSession(t as SetStateAction<string>)
+  const changeTheme = (t: string) => {
+    setTheme(t)
+    localStorage.setItem("rym_theme", t);
+  }
+  const changeSession = (t: string) => setSession(t)
   useEffect(() => {
     if (localStorage.getItem("rym_session")) setSession(localStorage.getItem("rym_session"));
-
+    if (localStorage.getItem("rym_theme")) setTheme(localStorage.getItem("rym_theme"))
   }, [])
   return (
     <html data-theme={theme} lang="en">
