@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import client from "../../../utils/tmdb"
 import FavoritesAdd from "./FavoritesAdd"
+import ImagesTab from "./ImagesTab"
 import RateMovie from "./Rate"
 import WatchlistAdd from "./WatchlistAdd"
 
@@ -55,12 +56,10 @@ export default async function Page({ params }) {
                 </div>
             </div>
             <div className="w-full flex flex-col h-full">
-                <div className="flex overflow-x-auto snap-x gap-4 lg:snap-none">
-                    {movie.images.posters.map((poster) => (
-                            <Image key={poster.file_path} className="snap-center" alt={`poster ${poster.file_path}`} src={client.getImageUrl(poster.file_path, "w500")} width={500} height={720} />
-                    ))}
-                </div>
+                <span className="text-2xl text-center mb-2">Images</span>
+                <ImagesTab movie={movie} />
             </div>
         </div>
     )
+    movie.images
 }

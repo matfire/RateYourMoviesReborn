@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^1.0.6",
     "@matfire/the_movie_wrapper": "^0.7.2",
     "daisyui": "^2.6.3",
