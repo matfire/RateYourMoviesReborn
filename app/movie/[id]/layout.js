@@ -2,6 +2,7 @@
 import DescriptionIcon from "./Description";
 import ImageIcon from "./Image";
 import ReviewIcon from "./Review";
+import VideoIcon from "./Video";
 
 export default function Layout({ children }) {
   return (
@@ -21,6 +22,13 @@ export default function Layout({ children }) {
           >
             <ImageIcon className="w-6 h-6" />
             <span>Images</span>
+          </a>
+          <a
+            href="#videos"
+            className="flex justify-between space-x-2 hover:bg-base-300 transition-colors"
+          >
+            <VideoIcon className="w-6 h-6" />
+            <span>Videos</span>
           </a>
           <a
             href="#reviews"

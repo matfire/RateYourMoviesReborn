@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import MovieReview from "../../../components/movie/MovieReview"
+import MovieVideo from "../../../components/movie/MovieVideo"
 import client from "../../../utils/tmdb"
 import FavoritesAdd from "./FavoritesAdd"
 import ImagesTab from "./ImagesTab"
@@ -60,6 +61,10 @@ export default async function Page({ params }) {
                 <section id="images" className="w-full">
                     <p className="text-2xl text-center mb-2">Images</p>
                     <ImagesTab movie={movie} />
+                </section>
+                <section className="w-full" id="videos">
+                    <p className="text-2xl text-center mb-2">Videos</p>
+                    {movie.videos.results.map((e) => <MovieVideo video={e} key={e.id} />)}
                 </section>
                 <section id="reviews" className="w-full">
                     <p className="text-2xl text-center mb-2">Reviews</p>
