@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import MovieReview from "../../../components/movie/MovieReview"
 import client from "../../../utils/tmdb"
 import FavoritesAdd from "./FavoritesAdd"
 import ImagesTab from "./ImagesTab"
@@ -9,7 +10,7 @@ import WatchlistAdd from "./WatchlistAdd"
 export default async function Page({ params }) {
     const movie = await client.movies.getMovie(params.id, ["keywords", "recommendations", "reviews", "videos", "lists", "images"])
     return (
-        <div className="w-full h-full flex flex-col px-4">
+        <div className="w-full h-full flex flex-col px-4" id="description">
             <div className="w-full flex justify-between flex-col md:flex-row">
                 <div className="card shadow-xl h-full">
                     <figure>
@@ -56,10 +57,15 @@ export default async function Page({ params }) {
                 </div>
             </div>
             <div className="w-full flex flex-col h-full">
-                <span className="text-2xl text-center mb-2">Images</span>
-                <ImagesTab movie={movie} />
+                <section id="images" className="w-full">
+                    <p className="text-2xl text-center mb-2">Images</p>
+                    <ImagesTab movie={movie} />
+                </section>
+                <section id="reviews" className="w-full">
+                    <p className="text-2xl text-center mb-2">Reviews</p>
+                    {movie?.reviews.results.map((e) => <MovieReview review={e} key={e.id} />)}
+                </section>
             </div>
         </div>
     )
-    movie.images
 }

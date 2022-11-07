@@ -19,9 +19,11 @@ export default function RateMovie({ movieId }: { movieId: number }) {
                         toast.error("Please wait for the previous operation to finish")
                         return;
                     }
+                    toast.loading("rating movie", { id: "rate" })
                     setInteractionLocked(true)
+                    client.setSessionId(session)
                     await client.movies.rate(movieId, value)
-                    toast.success("Movie rated!")
+                    toast.success("Movie rated!", { id: "rate" })
                     setInteractionLocked(false)
                 }}
                 size={30}
