@@ -17,3 +17,23 @@ body {
 main {
   flex: 2;
 }
+
+.film_details_nav {
+  @apply justify-evenly order-last lg:order-none sticky bottom-0 lg:bottom-auto z-20 lg:z-auto lg:top-0 h-full lg:w-1/12 bg-base-100  flex flex-row lg:flex-col;
+}
+
+.film_details_nav_link {
+  @apply  justify-start hover:bg-base-300 transition-colors;
+}
+
+.film_details_nav_link > p {
+  @apply hidden lg:block
+}
+
+.film_details_nav_link_icon {
+  @apply lg:w-6 lg:h-6 w-10 h-10
+}
+
+.scroll_bar {
+  @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-current;
+}

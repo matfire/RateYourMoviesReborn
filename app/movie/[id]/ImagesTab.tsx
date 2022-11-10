@@ -40,21 +40,21 @@ export default function ImagesTab({ movie }: { movie: Movie }) {
 			</Tab.List>
 			<Tab.Panels>
 				<Tab.Panel>
-					<div className="flex overflow-x-auto snap-x gap-4 lg:snap-none">
+					<div className="flex overflow-x-auto snap-x gap-4 lg:snap-none scroll_bar">
 						{movie.images.posters.map((poster) => (
 							<Image key={poster.file_path} className="snap-center w-80 h-auto object-cover" alt={`poster ${poster.file_path}`} src={client.getImageUrl(poster.file_path, "w500")} width={500} height={720} />
 						))}
 					</div>
 				</Tab.Panel>
 				<Tab.Panel>
-					<div className="flex overflow-x-auto snap-x gap-4 lg:snap-none">
+					<div className="flex overflow-x-auto snap-x gap-4 lg:snap-none scroll_bar">
 						{movie.images.backdrops.map((poster) => (
 							<Image key={poster.file_path} className="snap-center" alt={`poster ${poster.file_path}`} src={client.getImageUrl(poster.file_path, "w500")} width={500} height={282} />
 						))}
 					</div>
 				</Tab.Panel>
 				<Tab.Panel>
-					<div className="flex overflow-x-auto snap-x gap-4 lg:snap-none">
+					<div className="flex overflow-x-auto snap-x gap-4 lg:snap-none scroll_bar">
 						{movie.images.logos.map((poster) => (
 							<Image key={poster.file_path} className="snap-center" alt={`poster ${poster.file_path}`} src={client.getImageUrl(poster.file_path, "w500")} width={500} height={282} />
 						))}

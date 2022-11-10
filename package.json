@@ -11,14 +11,15 @@
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^1.0.6",
-    "@matfire/the_movie_wrapper": "^0.7.5",
+    "@matfire/the_movie_wrapper": "^0.7.8",
     "daisyui": "^2.6.3",
     "next": "^13.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.2.0",
     "react-lottie-player": "^1.5.0",
-    "react-rating-stars-component": "^2.2.0"
+    "react-rating-stars-component": "^2.2.0",
+    "tailwind-scrollbar": "^2.0.1"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import MovieCard from "../../../components/movie/MovieCard"
 import MovieReview from "../../../components/movie/MovieReview"
 import MovieVideo from "../../../components/movie/MovieVideo"
 import client from "../../../utils/tmdb"
@@ -47,7 +48,7 @@ export default async function Page({ params }) {
                     <div className="flex flex-col w-full">
                         <span className=" text-2xl text-center">Tags</span>
                         <div className="flex flex-wrap mb-2 mt-2 gap-4">
-                            {movie.keywords.map((e) => <Link className="hover:scale-110 transition-transform btn btn-outline" key={e.id} href={`/keywords/movie/${e.id}`}>{e.name}</Link>)}
+                            {movie.keywords.keywords.map((e) => <Link className="hover:scale-110 transition-transform btn btn-outline" key={e.id} href={`/keywords/movie/${e.id}`}>{e.name}</Link>)}
                         </div>
                     </div>
                     <div className="divider"></div>
@@ -69,6 +70,12 @@ export default async function Page({ params }) {
                 <section id="reviews" className="w-full">
                     <p className="text-2xl text-center mb-2">Reviews</p>
                     {movie?.reviews.results.map((e) => <MovieReview review={e} key={e.id} />)}
+                </section>
+                <section id="recommendations" className="w-full">
+                    <p className="text-2-xl text-center mb-2">Recommendations</p>
+                    <div className=" flex snap-x gap-4 overflow-x-auto lg:snap-none scroll_bar">
+                        {movie.recommendations.results.map((e) => <MovieCard movie={e} key={e.id} />)}
+                    </div>
                 </section>
             </div>
         </div>
