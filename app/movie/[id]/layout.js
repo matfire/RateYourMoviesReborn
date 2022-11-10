@@ -4,6 +4,7 @@ import ImageIcon from "./Image";
 import ReviewIcon from "./Review";
 import VideoIcon from "./Video";
 import FilmIcon from "./Film";
+import CastIcon from "./Cast";
 
 export default function Layout({ children }) {
   return (
@@ -12,6 +13,10 @@ export default function Layout({ children }) {
         <a href="#description" className="film_details_nav_link">
           <DescriptionIcon className="film_details_nav_link_icon" />
           <p>Overview</p>
+        </a>
+        <a href="#cast" className="film_details_nav_link">
+          <CastIcon className="film_details_nav_link_icon" />
+          <p>Cast</p>
         </a>
         <a href="#images" className="film_details_nav_link">
           <ImageIcon className="film_details_nav_link_icon" />

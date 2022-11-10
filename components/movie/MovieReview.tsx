@@ -4,7 +4,6 @@ import client from "../../utils/tmdb";
 import defaultImage from "../../images/defaultPicture.png"
 
 export default function MovieReviewCard({ review }: { review: MovieReview }) {
-    console.log(review)
     return (
         <div className="w-full flex flex-col lg:flex-row justify-evenly items-center mb-8">
             <div className="w-auto  lg:w-1/3">
