@@ -9,6 +9,7 @@ import FavoritesAdd from "./FavoritesAdd"
 import ImagesTab from "../../../components/movie/ImagesTab"
 import RateMovie from "./Rate"
 import WatchlistAdd from "./WatchlistAdd"
+import VideosTab from "../../../components/movie/VideosTab"
 
 export default async function Page({ params }) {
     const movie = await client.movies.getMovie(params.id, ["keywords", "recommendations", "reviews", "videos", "lists", "images", "credits"])
@@ -72,7 +73,7 @@ export default async function Page({ params }) {
                 </section>
                 <section className="w-full" id="videos">
                     <p className="text-2xl text-center mb-2">Videos</p>
-                    {movie.videos.results.map((e) => <MovieVideo video={e} key={e.id} />)}
+                    <VideosTab videos={movie.videos.results} />
                 </section>
                 <section id="reviews" className="w-full">
                     <p className="text-2xl text-center mb-2">Reviews</p>

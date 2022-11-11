@@ -17,9 +17,6 @@ export default async function Page() {
           }
         </div>
       </div>
-      <div className='flex flex-col items-center justify-center'>
-        <h1>Something else here...</h1>
-      </div>
     </div>
   )
 }
