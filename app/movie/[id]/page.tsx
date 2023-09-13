@@ -81,7 +81,7 @@ export default async function Page({ params }) {
                 </section>
                 <section id="recommendations" className="w-full">
                     <p className="text-2xl text-center mb-2">Recommendations</p>
-                    <div className=" flex p-2 snap-x gap-4 overflow-x-auto lg:snap-none scroll_bar">
+                    <div className=" flex p-2 snap-x gap-2 overflow-x-auto lg:snap-none scroll_bar">
                         {movie.recommendations.results.map((e) => <MovieCard movie={e} key={e.id} />)}
                     </div>
                 </section>
